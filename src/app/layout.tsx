@@ -1,4 +1,6 @@
+import Header from "@/components/Header";
 import ReduxProvider from "../store/ReduxProvider";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({
   children,
@@ -8,7 +10,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   );
