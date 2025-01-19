@@ -57,6 +57,10 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        "md-h": "5px 5px 0px 0px hsl(var(--accent))",
+        "lg-h": "13px 13px 0px 0px hsl(var(--primary))",
+      },
     },
   },
   plugins: [tailwindcssAnimate],
