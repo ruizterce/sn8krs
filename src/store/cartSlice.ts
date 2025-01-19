@@ -4,20 +4,34 @@ interface CartItem {
   id: string;
   name: string;
   price: number;
+  image: string;
   quantity: number;
 }
 
-const initialState: CartItem[] = [];
+interface CartState {
+  items: CartItem[];
+}
+
+const initialState: CartState = {
+  items: [],
+};
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      state.push(action.payload);
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
+      if (existingItem) {
+        existingItem.quantity += 1; // Increment quantity if the item is already in the cart
+      } else {
+        state.items.push({ ...action.payload, quantity: 1 });
+      }
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
-      return state.filter((item) => item.id !== action.payload);
+      state.items = state.items.filter((item) => item.id !== action.payload);
     },
   },
 });
