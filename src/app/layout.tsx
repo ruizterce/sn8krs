@@ -1,3 +1,4 @@
+import "./globals.css";
 import Header from "@/components/Header";
 import ReduxProvider from "../store/ReduxProvider";
 import Footer from "@/components/Footer";
@@ -9,10 +10,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="h-screen flex flex-col">
         <ReduxProvider>
           <Header />
-          <main className="min-h-screen">{children}</main>
+          <main className="overflow-auto flex-1">{children}</main>
           <Footer />
         </ReduxProvider>
       </body>
