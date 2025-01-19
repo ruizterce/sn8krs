@@ -8,4 +8,6 @@ export interface Product {
   image: string;
   avg_price: number;
   currency: string;
+  sku: string;
+  weekly_orders: { orders: number; position: number };
 }
