@@ -58,8 +58,16 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
+        "xs-h-p": "1px 1px 0px 0px hsl(var(--accent))",
+        "sm-h": "2px 2px 0px 0px hsl(var(--accent))",
         "md-h": "5px 5px 0px 0px hsl(var(--accent))",
-        "lg-h": "13px 13px 0px 0px hsl(var(--primary))",
+        "lg-h": "13px 13px 0px 0px hsl(var(--accent))",
+      },
+      dropShadow: {
+        "xs-h": "1px 1px 0px hsl(var(--accent))",
+        "sm-h": "2px 2px 0px hsl(var(--accent))",
+        "md-h": "5px 5px 0px hsl(var(--accent))",
+        "lg-h": "13px 13px 0px hsl(var(--accent))",
       },
     },
   },

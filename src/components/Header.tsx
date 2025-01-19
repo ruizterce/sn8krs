@@ -1,20 +1,51 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+
   return (
-    <header className="bg-primary text-white p-4">
-      <div className="flex justify-between items-center">
-        <h1 className="text-xl font-bold w-8">
-          <Link href="/">SN8KRS</Link>
-        </h1>
-        <nav className="flex space-x-4">
-          <Link href="/products">Products</Link>
+    <header className="z-10 bg-background text-foreground border-b-2 border-primary px-4 py-2 hover:drop-shadow-md-h hover:translate-y-1 transition-all duration-500">
+      <h1 className="absolute text-xl font-bold drop-shadow-sm-h hover:drop-shadow-md-h hover:-translate-x-[8px] hover:-translate-y-[8px] transition-all duration-200">
+        <Link href="/">SN8KRS</Link>
+      </h1>
 
-          <Link href="/cart">Cart</Link>
+      <nav className="flex gap-4 w-full justify-center items-end font-bold ">
+        <Link
+          href="/products"
+          className={`hover:drop-shadow-md-h hover:-translate-y-[5px] hover:-translate-x-[5px] transition-all duration-200 ${
+            pathname.startsWith("/products")
+              ? "drop-shadow-xs-h font-black line-through"
+              : ""
+          }`}
+        >
+          Products
+        </Link>
 
-          <Link href="/account">Account</Link>
-        </nav>
-      </div>
+        <Link
+          href="/cart"
+          className={`hover:drop-shadow-md-h hover:-translate-y-[5px] hover:-translate-x-[5px] transition-all duration-200 ${
+            pathname.startsWith("/cart")
+              ? "drop-shadow-xs-h font-black line-through"
+              : ""
+          }`}
+        >
+          Cart
+        </Link>
+
+        <Link
+          href="/account"
+          className={`hover:drop-shadow-md-h hover:-translate-y-[5px] hover:-translate-x-[5px] transition-all duration-200 ${
+            pathname.startsWith("/account")
+              ? "drop-shadow-xs-h font-black line-through"
+              : ""
+          }`}
+        >
+          Account
+        </Link>
+      </nav>
     </header>
   );
 }
