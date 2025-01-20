@@ -14,6 +14,7 @@ yarn-error.log*
 # AWS Amplify Files
 amplify/
 aws-exports.js
+aws-exports.ts
 
 # Miscellaneous
 .DS_Store
