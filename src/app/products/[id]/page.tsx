@@ -2,10 +2,11 @@ import React from "react";
 import { fetchProductById } from "@/lib/api";
 import Image from "next/image";
 import AddToCartButton from "./AddToCartButton";
+import { PageProps } from "../../../../.next/types/app/page";
 
-export default async function Product({ params }: { params: { id: string } }) {
+export default async function ProductPage({ params }: PageProps) {
   try {
-    const { id } = await params;
+    const { id } = (await params) as unknown as { id: string };
     const product = await fetchProductById(id);
     return (
       <div className="sm:pt-4 px-2 pb-6 ">
