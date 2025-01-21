@@ -1,14 +1,12 @@
 import React from "react";
 import { fetchProductById } from "@/lib/api";
 import Image from "next/image";
+import AddToCartButton from "./AddToCartButton";
 
 export default async function Product({ params }: { params: { id: string } }) {
-  const { id } = params;
-
   try {
+    const { id } = await params;
     const product = await fetchProductById(id);
-    console.log(product);
-
     return (
       <div className="sm:pt-4 px-2 pb-6 ">
         <h1 className="sm:fixed text-3xl font-bold sm:[writing-mode:sideways-lr]">
@@ -41,6 +39,7 @@ export default async function Product({ params }: { params: { id: string } }) {
               <p className="my-3 text-2xl font-extrabold text-primary">
                 ${product.avg_price.toFixed(2)}
               </p>
+              <AddToCartButton product={product} />
             </div>
             <div className="my-3 ">
               <p className="text-gray-700 leading-relaxed">

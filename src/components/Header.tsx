@@ -2,9 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
+import { selectTotalQuantity } from "@/store/cartSlice";
+import { ShoppingCart } from "lucide-react";
 
 export default function Header() {
   const pathname = usePathname();
+  const totalQuantity = useSelector(selectTotalQuantity);
 
   return (
     <header className="z-10 bg-background text-foreground border-b-2 border-primary px-4 py-2 hover:drop-shadow-md-h hover:translate-y-1 transition-all duration-500">
@@ -46,6 +50,12 @@ export default function Header() {
           Account
         </Link>
       </nav>
+      <Link href={"/cart"} className="absolute top-2 right-4 flex">
+        <span className="bg-primary text-background rounded-full px-2 h-6 text-center font-bold">
+          {totalQuantity}
+        </span>
+        <ShoppingCart color="black" size={24} className="" />
+      </Link>
     </header>
   );
 }
