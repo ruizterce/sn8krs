@@ -1,0 +1,28 @@
+[data-amplify-authenticator] {
+  --amplify-components-text-error-color: hsl(var(--primary));
+  --amplify-components-fieldcontrol-error-border-color: hsl(var(--primary));
+  --amplify-components-authenticator-router-box-shadow: 0 0 0px
+    var(--amplify-colors-overlay-10);
+  --amplify-components-authenticator-router-border-width: 1px;
+  --amplify-components-authenticator-router-border-color: hsl(var(--border));
+  --amplify-components-authenticator-form-padding: var(--amplify-space-medium)
+    var(--amplify-space-xl) var(--amplify-space-xl);
+  --amplify-components-button-border-radius: 0px;
+  --amplify-components-button-primary-background-color: hsl(var(--foreground));
+  --amplify-components-button-primary-hover-background-color: hsl(
+    var(--primary)
+  );
+  --amplify-components-button-primary-active-background-color: hsl(
+    var(--primary)
+  );
+  --amplify-components-button-primary-focus-background-color: hsl(
+    var(--primary)
+  );
+  --amplify-components-fieldcontrol-border-radius: 0px;
+  --amplify-components-fieldcontrol-focus-box-shadow: 0 0 0 2px
+    hsl(var(--accent));
+  --amplify-components-tabs-item-active-border-color: hsl(var(--accent));
+  --amplify-components-tabs-item-color: var(--amplify-colors-neutral-80);
+  --amplify-components-tabs-item-active-color: hsl(var(--foreground));
+  --amplify-components-button-link-color: hsl(var(--secondary));
+}
