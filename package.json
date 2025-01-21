@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-amplify/ui-react": "^6.9.0",
     "@reduxjs/toolkit": "^2.5.0",
     "aws-amplify": "^6.12.1",
     "class-variance-authority": "^0.7.1",

@@ -1,32 +1,34 @@
 "use client";
 
 import { useSelector } from "react-redux";
-import { RootState } from "../../store/index";
-import { useEffect } from "react";
+import { RootState } from "@/store";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useAuthValidation } from "../../hooks/useAuthValidation";
 
-const ProtectedPage = () => {
+export default function ProtectedPage() {
+  const loading = useAuthValidation();
   const { isAuthenticated, user } = useSelector(
     (state: RootState) => state.auth
   );
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login"); // Redirect to login if not authenticated
+    if (!loading && !isAuthenticated) {
+      router.push("/login");
     }
-  }, [isAuthenticated, router]);
+  }, [loading, isAuthenticated, router]);
 
-  if (!isAuthenticated) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
+  if (!isAuthenticated) return null;
+
   return (
     <div>
-      <h1>Protected Content</h1>
-      <p>Welcome, {user?.username}!</p>
+      <div>Protected Content</div>
+      <div>{user?.name}</div>
     </div>
   );
-};
-
-export default ProtectedPage;
+}
