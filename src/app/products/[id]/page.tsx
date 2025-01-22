@@ -13,8 +13,8 @@ export default async function ProductPage({ params }: PageProps) {
         <h1 className="sm:fixed text-3xl font-bold sm:[writing-mode:sideways-lr]">
           {product.brand}
         </h1>
-        <div className="grid md:grid-cols-[1fr_1fr] space-x-8 max-w-[1600px] mx-auto">
-          <div className="sm:ml-8 max-w-3xl mx-auto bg-background ">
+        <div className="grid place-items-center xl:grid-cols-[1fr_1fr] gap-8 max-w-[1600px] mx-auto">
+          <div className="sm:ml-8 max-w-3xl  bg-background ">
             <Image
               src={product.image}
               alt={product.title}
@@ -24,7 +24,7 @@ export default async function ProductPage({ params }: PageProps) {
               priority={false}
             />
           </div>
-          <div className="p-4 flex flex-col justify-between max-w-[700px] text-justify">
+          <div className="p-4 flex ml-7 flex-col justify-between max-w-[725px] text-justify">
             <div>
               <h1 className=" text-2xl font-bold mb-2 text-foreground drop-shadow-sm-h">
                 {product.title}

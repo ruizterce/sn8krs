@@ -1,24 +1,14 @@
 "use client";
+import { Product } from "@/types/product";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface ProductCardProps {
-  id: string;
-  name: string;
-  color: string;
-  price: number;
-  image: string;
-  quantity: number;
+  product: Product;
 }
 
-export default function ProductCard({
-  id,
-  name,
-  color,
-  price,
-  image,
-}: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
   const [rotation, setRotation] = useState(0);
   const router = useRouter();
 
@@ -28,7 +18,7 @@ export default function ProductCard({
   return (
     <div
       onClick={() => {
-        router.push(`/products/${id}`);
+        router.push(`/products/${product.id}`);
       }}
       onMouseEnter={() => setRotation(getRandomRotation())}
       onMouseLeave={() => setRotation(0)}
@@ -41,20 +31,22 @@ export default function ProductCard({
       }}
     >
       <Image
-        src={image}
-        alt={name}
+        src={product.image}
+        alt={product.title}
         width={300}
-        height={300}
-        className="object-cover rounded-md mb-4 mx-auto"
+        height={190}
+        className="object-cover rounded-md mb-4 mx-auto max-h-[190px]"
         priority={false}
       />
       <h2 className="text-lg font-bold self-start line-clamp-2 overflow-hidden text-ellipsis">
-        {name}
+        {product.title}
       </h2>
       <div className="flex w-full justify-between items-center self-end gap-2">
-        <p className="text-primary font-bold">${price.toFixed(2)}</p>
+        <p className="text-primary font-bold">
+          ${product.avg_price.toFixed(2)}
+        </p>
         <p className="text-sm line-clamp-1 overflow-hidden text-ellipsis">
-          {color}
+          {product.color}
         </p>
       </div>
     </div>

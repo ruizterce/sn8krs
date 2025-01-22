@@ -86,15 +86,7 @@ export default function Products() {
       >
         {products.length > 0 ? (
           products.map((product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              name={product.title}
-              color={product.color}
-              price={product.avg_price}
-              image={product.image}
-              quantity={1}
-            />
+            <ProductCard key={product.id} product={product} />
           ))
         ) : (
           <p>No products available</p>
