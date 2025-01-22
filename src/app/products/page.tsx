@@ -45,6 +45,7 @@ export default function Products() {
       setLastEvaluatedKey(null);
       setHasMore(true);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Infinite scroll handler with throttling
@@ -92,7 +93,7 @@ export default function Products() {
           <p>No products available</p>
         )}
       </div>
-      {loading && <p>Loading more products...</p>}
+      {loading && <p className="text-center">Loading more products...</p>}
     </div>
   );
 }

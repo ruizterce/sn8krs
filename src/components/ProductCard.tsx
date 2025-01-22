@@ -18,7 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div
       onClick={() => {
-        router.push(`/products/${product.id}`);
+        router.push(`/products/${product.category}/${product.id}`);
       }}
       onMouseEnter={() => setRotation(getRandomRotation())}
       onMouseLeave={() => setRotation(0)}
