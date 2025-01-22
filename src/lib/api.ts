@@ -1,4 +1,5 @@
 import { Product } from "@/types/product";
+const baseUrl = process.env.NEXT_AWS_API_GATEWAY_URL;
 
 export async function fetchProducts(): Promise<Product[]> {
   const options = {
@@ -7,17 +8,14 @@ export async function fetchProducts(): Promise<Product[]> {
   };
 
   try {
-    const response = await fetch(
-      "https://api.sneakersapi.dev/api/v2/products?category=sneakers",
-      options
-    );
+    const response = await fetch(`${baseUrl}/dev/products`, options);
 
     if (!response.ok) {
       throw new Error("Failed to fetch products");
     }
 
     const data = await response.json();
-    return data.data; // Return the array of products
+    return data.body.items;
   } catch (error) {
     console.error("Error fetching products:", error);
     return [];
@@ -31,17 +29,14 @@ export async function fetchProductById(id: string): Promise<Product> {
   };
 
   try {
-    const response = await fetch(
-      `https://api.sneakersapi.dev/api/v2/products/${id}`,
-      options
-    );
+    const response = await fetch(`${baseUrl}/dev/products/${id}`, options);
 
     if (!response.ok) {
       throw new Error("Failed to fetch product");
     }
 
     const data = await response.json();
-    return data.data;
+    return data;
   } catch (error) {
     console.error("Error fetching product:", error);
     throw error;

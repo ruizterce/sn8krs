@@ -23,12 +23,6 @@ export default async function ProductPage({ params }: PageProps) {
               className="object-cover border mb-6 mx-auto p-6 shadow-lg-h"
               priority={false}
             />
-            <div className="flex gap-2">
-              <span>Weekly Position:</span>
-              <span> {product.weekly_orders.position}</span>
-              <span>Orders:</span>
-              <span> {product.weekly_orders.orders}</span>
-            </div>
           </div>
           <div className="p-4 flex flex-col justify-between max-w-[700px] text-justify">
             <div>
