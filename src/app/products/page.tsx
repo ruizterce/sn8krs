@@ -77,13 +77,13 @@ export default function Products() {
   }, [hasMore, loadMoreProducts]);
 
   return (
-    <div className="pt-2 pr-2 pb-6 bg-none">
+    <div className="pt-2 pr-2 pb-6 bg-none h-full">
       <h1 className="fixed left-1 py-4 text-3xl font-futuraBold [writing-mode:sideways-lr]">
         All Products
       </h1>
       <div
         ref={productsContainerRef}
-        className="flex py-4 px-5 flex-wrap gap-6 items-center justify-center overflow-y-auto max-h-[80vh]"
+        className="flex min-h-full py-4 px-8 flex-wrap gap-6 items-center justify-center overflow-y-auto max-h-[80vh]"
       >
         {products.length > 0 ? (
           products.map((product) => (
@@ -93,7 +93,14 @@ export default function Products() {
           <p>No products available</p>
         )}
       </div>
-      {loading && <p className="text-center">Loading more products...</p>}
+
+      <p
+        className={`fixed right-2 md:right-6 bottom-20 font-futuraBoldOblique text-xl [writing-mode:sideways-rl] origin-bottom-left transition-all duration-300 ease-in-out ${
+          loading ? "opacity-1" : "opacity-0"
+        }`}
+      >
+        Loading more products...
+      </p>
     </div>
   );
 }
