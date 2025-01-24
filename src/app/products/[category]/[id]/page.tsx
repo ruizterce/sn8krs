@@ -61,7 +61,7 @@ export default function ProductPage({ params }: PageProps) {
 
   return (
     <div className="sm:pt-6 px-2 pb-6">
-      <h1 className="sm:fixed text-3xl font-bold sm:[writing-mode:sideways-lr]">
+      <h1 className="sm:fixed text-3xl font-futuraExtraBoldOblique sm:[writing-mode:sideways-lr]">
         {product.brand}
       </h1>
       <div className="grid place-items-center xl:grid-cols-[1fr_1fr] gap-8 max-w-[1600px] mx-auto">
@@ -77,10 +77,12 @@ export default function ProductPage({ params }: PageProps) {
         </div>
         <div className="h-full flex sm:ml-7 p-2 xl:pt-0 xl:pb-0 flex-col justify-between max-w-[725px] text-justify">
           <div>
-            <h1 className="text-2xl font-bold mb-2 text-foreground drop-shadow-sm-h">
+            <h1 className="text-4xl font-futuraExtraBold mb-2 text-foreground drop-shadow-sm-h">
               {product.title}
             </h1>
-            <p className="text-lg font-bold text-gray-900">{product.color}</p>
+            <p className="text-xl font-futuraBold text-gray-800">
+              {product.color}
+            </p>
             <p className="text-sm text-gray-500">SKU: {product.sku}</p>
             <p className="my-3 text-2xl font-extrabold text-primary">
               ${Number(product.avg_price).toFixed(2)}

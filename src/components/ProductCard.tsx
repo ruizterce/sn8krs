@@ -38,7 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         className="object-cover rounded-md mb-4 mx-auto max-h-[190px]"
         priority={false}
       />
-      <h2 className="text-lg font-bold self-start line-clamp-2 overflow-hidden text-ellipsis">
+      <h2 className="text-2xl font-futuraBold self-start line-clamp-2 overflow-hidden text-ellipsis">
         {product.title}
       </h2>
       <div className="flex w-full justify-between items-center self-end gap-2">

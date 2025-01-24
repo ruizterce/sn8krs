@@ -78,7 +78,7 @@ export default function Products() {
 
   return (
     <div className="pt-4 pr-2 pb-6">
-      <h1 className="fixed text-xl font-bold [writing-mode:sideways-lr]">
+      <h1 className="fixed left-1 text-3xl font-futuraBold [writing-mode:sideways-lr]">
         Products
       </h1>
       <div

@@ -52,6 +52,12 @@ export default {
           "5": "hsl(var(--chart-5))",
         },
       },
+      fontFamily: {
+        futuraBold: ["FuturaPTCondBold", "sans-serif"],
+        futuraBoldOblique: ["FuturaPTCondBoldOblique", "sans-serif"],
+        futuraExtraBold: ["FuturaPTCondExtraBold", "sans-serif"],
+        futuraExtraBoldOblique: ["FuturaPTCondExtraBoldOblique", "sans-serif"],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

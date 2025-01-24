@@ -72,3 +72,37 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Fonts */
+
+/* Futura PT Condensed Bold */
+@font-face {
+  font-family: "FuturaPTCondBold";
+  src: url("/fonts/FuturaPTCondBold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Futura PT Condensed Bold Oblique */
+@font-face {
+  font-family: "FuturaPTCondBoldOblique";
+  src: url("/fonts/FuturaPTCondBoldOblique.otf") format("opentype");
+  font-weight: bold;
+  font-style: oblique;
+}
+
+/* Futura PT Condensed Extra Bold */
+@font-face {
+  font-family: "FuturaPTCondExtraBold";
+  src: url("/fonts/FuturaPTCondExtraBold.otf") format("opentype");
+  font-weight: bolder;
+  font-style: normal;
+}
+
+/* Futura PT Condensed Extra Bold Oblique */
+@font-face {
+  font-family: "FuturaPTCondExtraBoldOblique";
+  src: url("/fonts/FuturaPTCondExtraBoldOblique.otf") format("opentype");
+  font-weight: bolder;
+  font-style: oblique;
+}

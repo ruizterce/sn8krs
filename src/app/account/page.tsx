@@ -55,8 +55,12 @@ const AuthenticatedView = ({
 
   return (
     <div className="h-full pt-4 px-4 pb-6 flex flex-col items-center gap-8">
-      <h1 className="text-3xl font-bold">
-        What&apos;s up, <span className="drop-shadow-sm-h">{user?.name}</span>!
+      <h1 className="text-3xl font-futuraBold">
+        What&apos;s up,{" "}
+        <span className="drop-shadow-sm-h font-futuraBoldOblique">
+          {user?.name}
+        </span>
+        !
       </h1>
       <p>Your orders</p>
       <button
