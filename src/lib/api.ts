@@ -9,7 +9,7 @@ export async function fetchProducts(
     method: "GET",
     headers: { Authorization: process.env.NEXT_SNEAKERSAPI_KEY || "" },
   };
-
+  console.log(lastEvaluatedKey);
   const queryParams = new URLSearchParams({ limit: String(limit) });
   if (lastEvaluatedKey) {
     // Automatically URL-encode the lastEvaluatedKey if it's provided
@@ -19,9 +19,54 @@ export async function fetchProducts(
     );
   }
 
+  console.log(`${baseUrl}/dev/products?${queryParams.toString()}`);
   try {
     const response = await fetch(
       `${baseUrl}/dev/products?${queryParams.toString()}`,
+      options
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch products");
+    }
+
+    const data = await response.json();
+
+    return {
+      items: data.body.items,
+      lastEvaluatedKey: data.body.lastEvaluatedKey, // Return the lastEvaluatedKey as is
+    };
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return { items: [], lastEvaluatedKey: null };
+  }
+}
+
+export async function fetchProductsByCategory(
+  category: string,
+  brand: string | null = null,
+  limit: number = 10,
+  lastEvaluatedKey?: string
+): Promise<{ items: Product[]; lastEvaluatedKey: string | null }> {
+  const options = {
+    method: "GET",
+  };
+
+  const queryParams = new URLSearchParams({
+    limit: String(limit),
+  });
+  if (brand) {
+    queryParams.append("brand", brand);
+  }
+  if (lastEvaluatedKey) {
+    // Automatically URL-encode the lastEvaluatedKey if it's provided
+    queryParams.append("lastEvaluatedKey", lastEvaluatedKey);
+  }
+
+  console.log(`${baseUrl}/dev/products/${category}?${queryParams.toString()}`);
+  try {
+    const response = await fetch(
+      `${baseUrl}/dev/products/${category}?${queryParams.toString()}`,
       options
     );
 
