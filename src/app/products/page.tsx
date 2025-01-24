@@ -77,13 +77,13 @@ export default function Products() {
   }, [hasMore, loadMoreProducts]);
 
   return (
-    <div className="pt-4 pr-2 pb-6">
-      <h1 className="fixed left-1 text-3xl font-futuraBold [writing-mode:sideways-lr]">
-        Products
+    <div className="pt-2 pr-2 pb-6 bg-none">
+      <h1 className="fixed left-1 py-4 text-3xl font-futuraBold [writing-mode:sideways-lr]">
+        All Products
       </h1>
       <div
         ref={productsContainerRef}
-        className="flex px-5 flex-wrap gap-6 items-center justify-center overflow-y-auto max-h-[80vh]" // Added scrollable styles
+        className="flex py-4 px-5 flex-wrap gap-6 items-center justify-center overflow-y-auto max-h-[80vh]"
       >
         {products.length > 0 ? (
           products.map((product) => (

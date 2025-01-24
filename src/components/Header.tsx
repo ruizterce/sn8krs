@@ -5,10 +5,13 @@ import { usePathname } from "next/navigation";
 import { useSelector } from "react-redux";
 import { selectTotalQuantity } from "@/store/cartSlice";
 import { ShoppingCart } from "lucide-react";
+import { useState } from "react";
+import { CATEGORIES } from "@/data";
 
 export default function Header() {
   const pathname = usePathname();
   const totalQuantity = useSelector(selectTotalQuantity);
+  const [categoryDropdown, setCategoryDropdown] = useState(false);
 
   return (
     <header className="z-10 bg-background text-foreground border-b-2 border-primary px-4 py-1 hover:drop-shadow-md-h hover:translate-y-1 transition-all duration-500">
@@ -20,13 +23,48 @@ export default function Header() {
         <Link
           href="/products"
           className={`hover:drop-shadow-md-h hover:-translate-y-[5px] hover:-translate-x-[5px] transition-all duration-200 ${
-            pathname.startsWith("/products")
+            pathname.endsWith("/products")
               ? "drop-shadow-xs-h font-black line-through"
               : ""
           }`}
         >
           Products
         </Link>
+
+        <div
+          className={`hover:-translate-y-[5px] hover:-translate-x-[5px]  transition-all duration-200 relative`}
+          onMouseEnter={() => {
+            setCategoryDropdown(true);
+          }}
+          onMouseLeave={() => {
+            setCategoryDropdown(false);
+          }}
+        >
+          <span className={`${categoryDropdown ? "drop-shadow-md-h" : ""}`}>
+            Categories
+          </span>
+          <div
+            id="dropdown"
+            className={`absolute bg-background p-3 w-32 origin-top transition-all duration-200 ease-in-out ${
+              categoryDropdown ? "scale-y-1" : "scale-y-0"
+            }`}
+          >
+            {CATEGORIES.map((category) => (
+              <div
+                key={category}
+                className={`mb-2 hover:drop-shadow-sm-h hover:-translate-y-[2px] hover:-translate-x-[2px] transition-all duration-200 ease-in-out ${
+                  pathname.includes(`/${category}`)
+                    ? "drop-shadow-xs-h font-black line-through"
+                    : ""
+                }`}
+              >
+                <Link href={`/products/${category}`} className="p-4">
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
 
         <Link
           href="/cart"

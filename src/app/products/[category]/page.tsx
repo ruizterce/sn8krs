@@ -92,12 +92,12 @@ export default function Category({ params }: PageProps) {
 
   return (
     <div className="pt-4 pr-2 pb-6">
-      <h1 className="fixed left-1 text-3xl font-futuraBold [writing-mode:sideways-lr]">
+      <h1 className="fixed left-1 py-4 text-3xl font-futuraBold [writing-mode:sideways-lr]">
         {category.charAt(0).toUpperCase() + category.slice(1)}
       </h1>
       <div
         ref={productsContainerRef}
-        className="flex px-5 flex-wrap gap-6 items-center justify-center overflow-y-auto max-h-[80vh]" // Added scrollable styles
+        className="flex py-4 px-5 flex-wrap gap-6 items-center justify-center overflow-y-auto max-h-[80vh]" // Added scrollable styles
       >
         {products.length > 0 ? (
           products.map((product) => (
