@@ -1,5 +1,5 @@
 import { Product } from "@/types/product";
-const baseUrl = "https://8tdu6s07b3.execute-api.eu-west-1.amazonaws.com";
+const baseUrl = process.env.NEXT_PUBLIC_AWS_API_GATEWAY_URL;
 
 export async function fetchProducts(
   limit: number = 10,
@@ -7,7 +7,6 @@ export async function fetchProducts(
 ): Promise<{ items: Product[]; lastEvaluatedKey: string | null }> {
   const options = {
     method: "GET",
-    headers: { Authorization: process.env.NEXT_SNEAKERSAPI_KEY || "" },
   };
   console.log(lastEvaluatedKey);
   const queryParams = new URLSearchParams({ limit: String(limit) });
@@ -97,7 +96,6 @@ export async function fetchProductById(
 ): Promise<Product> {
   const options = {
     method: "GET",
-    headers: { Authorization: process.env.NEXT_SNEAKERSAPI_KEY || "" },
   };
 
   try {
