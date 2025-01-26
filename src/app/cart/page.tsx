@@ -2,30 +2,140 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import Image from "next/image";
+import { removeFromCart, updateQuantity } from "@/store/cartSlice";
+import { useDispatch } from "react-redux";
 
 export default function Cart() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  const dispatch = useDispatch();
+
+  // Calculate total price
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + item.quantity * item.price,
+    0
+  );
+
   return (
-    <div className="h-full pt-4 px-4 pb-6 flex flex-col items-center gap-8">
-      <h1>Shopping Cart</h1>
+    <div className="h-full pt-4 px-2 sm:px-10 pb-6 flex flex-col items-center gap-8">
+      <h1 className="fixed left-1 py-4 text-3xl font-futuraBold [writing-mode:sideways-lr]">
+        Your Cart
+      </h1>
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        <ul>
-          {cartItems.map((item) => (
-            <li key={item.id}>
-              <Image
-                src={item.image}
-                alt={item.name}
-                width={100}
-                height={100}
-              />
-              <p>{item.name}</p>
-              <p>${item.price.toFixed(2)}</p>
-              <p>Quantity: {item.quantity}</p>
-            </li>
-          ))}
-        </ul>
+        <table className="w-full max-w-5xl table-fixed border-collapse text-sm sm:text-base lg:text-lg drop-shadow-md-h overflow-hidden">
+          <thead className="bg-primary text-white">
+            <tr className="font-futuraExtraBold">
+              <th className="py-3 w-full border-b border-gray-700">Product</th>
+              <th className="sm:px-2 py-3 w-6 sm:w-12 border-b border-gray-700">
+                Qty
+              </th>
+              <th className="py-3 w-16 sm:w-20 text-center border-b border-gray-700">
+                Price
+              </th>
+              <th className="py-3 w-16 sm:w-20 text-center border-b border-gray-700">
+                Subtotal
+              </th>
+              <th className="w-8 sm:w-12"></th>
+            </tr>
+          </thead>
+          <tbody className="bg-white text-black">
+            {cartItems.map((item) => (
+              <tr
+                key={item.id}
+                className="hover:bg-gray-100 border-b border-gray-300"
+              >
+                <td>
+                  <div className="px-4 py-2 flex items-center gap-6">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      width={60}
+                      height={60}
+                    />
+                    <span className="whitespace-nowrap truncate">
+                      {item.name}
+                    </span>
+                  </div>
+                </td>
+                <td className="py-2 text-center whitespace-nowrap border-r border-gray-300">
+                  <input
+                    className="text-center w-8 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none flex-grow-0"
+                    type="number"
+                    value={item.quantity}
+                    min={1}
+                    max={99}
+                    step={1}
+                    onChange={(e) => {
+                      dispatch(
+                        updateQuantity({
+                          id: item.id,
+                          quantity: Number(e.target.value),
+                        })
+                      );
+                    }}
+                  />
+                </td>
+                <td className="py-2 text-center whitespace-nowrap border-r border-gray-300">
+                  ${item.price.toFixed(2)}
+                </td>
+                <td className="py-2 text-center whitespace-nowrap border-r border-gray-300">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </td>
+                <td className="flex flex-col items-center">
+                  <button
+                    className="bg-primary h-6 w-6 text-background px-2 py-1 rounded-full leading-3"
+                    onClick={() => {
+                      dispatch(
+                        updateQuantity({
+                          id: item.id,
+                          quantity: item.quantity + 1,
+                        })
+                      );
+                    }}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="bg-primary h-6 w-6 text-background px-2 py-1 rounded-full leading-3"
+                    onClick={() => {
+                      dispatch(
+                        updateQuantity({
+                          id: item.id,
+                          quantity: item.quantity - 1,
+                        })
+                      );
+                    }}
+                  >
+                    -
+                  </button>
+                  <button
+                    className="bg-primary h-6 w-6 text-background px-2 py-1 rounded-full leading-3"
+                    onClick={() => {
+                      if (
+                        window.confirm(`Remove "${item.name}" from your cart?`)
+                      ) {
+                        dispatch(removeFromCart(item.id));
+                      }
+                    }}
+                  >
+                    x
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr className="bg-gray-200 font-bold">
+              <td className="px-4 py-2 text-right" colSpan={3}>
+                Total:
+              </td>
+              <td className="px-4 py-2 text-right" colSpan={2}>
+                ${totalPrice.toFixed(2)}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
       )}
     </div>
   );
