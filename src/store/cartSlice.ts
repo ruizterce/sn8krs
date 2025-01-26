@@ -49,11 +49,15 @@ const cartSlice = createSlice({
         existingItem.quantity = action.payload.quantity;
       }
     },
+    setCartState(state, action: PayloadAction<CartState>) {
+      return action.payload;
+    },
   },
 });
 
 export const selectTotalQuantity = (state: { cart: CartState }) =>
   state.cart.items.reduce((total, item) => total + item.quantity, 0);
 
-export const { addToCart, removeFromCart, updateQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart, updateQuantity, setCartState } =
+  cartSlice.actions;
 export default cartSlice.reducer;

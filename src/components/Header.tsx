@@ -2,19 +2,29 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSelector } from "react-redux";
-import { selectTotalQuantity } from "@/store/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectTotalQuantity, setCartState } from "@/store/cartSlice";
 import { ShoppingCart } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CATEGORIES } from "@/data";
+import { loadState } from "@/lib/localStorage";
 
 export default function Header() {
   const pathname = usePathname();
   const totalQuantity = useSelector(selectTotalQuantity);
   const [categoryDropdown, setCategoryDropdown] = useState(false);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const persistedState = loadState();
+    if (persistedState && persistedState.cart) {
+      dispatch(setCartState(persistedState.cart));
+    }
+  }, [dispatch]);
+
   return (
-    <header className="z-20 bg-background text-foreground border-b-2 border-primary px-6 py-1 hover:drop-shadow-md-h hover:translate-y-1 transition-all duration-500">
+    <header className="z-10 bg-background text-foreground border-b-2 border-primary px-6 py-1 hover:drop-shadow-md-h hover:translate-y-1 transition-all duration-500">
       <h1 className="absolute top-[5px] text-2xl font-futuraExtraBoldOblique drop-shadow-sm-h hover:drop-shadow-md-h hover:-translate-x-[8px] hover:-translate-y-[8px] transition-all duration-200">
         <Link href="/">SN8KRS</Link>
       </h1>
