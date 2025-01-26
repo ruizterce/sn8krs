@@ -58,12 +58,13 @@ export async function fetchProductsByCategory(
   if (brand) {
     queryParams.append("brand", brand);
   }
+  console.log("fetch lastEvaluatedKey");
+  console.log(lastEvaluatedKey);
   if (lastEvaluatedKey) {
     // Automatically URL-encode the lastEvaluatedKey if it's provided
     queryParams.append("lastEvaluatedKey", lastEvaluatedKey);
   }
-
-  console.log(`${baseUrl}/dev/products/${category}?${queryParams.toString()}`);
+  console.log(`${baseUrl}/dev/products?${queryParams.toString()}`);
   try {
     const response = await fetch(
       `${baseUrl}/dev/products/${category}?${queryParams.toString()}`,
@@ -76,9 +77,13 @@ export async function fetchProductsByCategory(
 
     const data = await response.json();
 
+    console.log("fetch received lastEvaluatedKey");
+    console.log(data.body.lastEvaluatedKey);
     return {
       items: data.body.items,
-      lastEvaluatedKey: data.body.lastEvaluatedKey, // Return the lastEvaluatedKey as is
+      lastEvaluatedKey: data.body.lastEvaluatedKey
+        ? data.body.lastEvaluatedKey
+        : null,
     };
   } catch (error) {
     console.error("Error fetching products:", error);

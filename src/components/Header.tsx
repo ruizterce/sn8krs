@@ -14,7 +14,7 @@ export default function Header() {
   const [categoryDropdown, setCategoryDropdown] = useState(false);
 
   return (
-    <header className="z-10 bg-background text-foreground border-b-2 border-primary px-4 py-1 hover:drop-shadow-md-h hover:translate-y-1 transition-all duration-500">
+    <header className="z-20 bg-background text-foreground border-b-2 border-primary px-6 py-1 hover:drop-shadow-md-h hover:translate-y-1 transition-all duration-500">
       <h1 className="absolute top-[5px] text-2xl font-futuraExtraBoldOblique drop-shadow-sm-h hover:drop-shadow-md-h hover:-translate-x-[8px] hover:-translate-y-[8px] transition-all duration-200">
         <Link href="/">SN8KRS</Link>
       </h1>
@@ -88,7 +88,7 @@ export default function Header() {
           Account
         </Link>
       </nav>
-      <Link href={"/cart"} className="absolute top-2 right-4 flex">
+      <Link href={"/cart"} className="absolute top-2 right-7 flex">
         <span className="bg-primary text-background rounded-full px-2 h-6 text-center font-bold">
           {totalQuantity}
         </span>

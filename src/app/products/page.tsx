@@ -77,7 +77,7 @@ export default function Products() {
   }, [hasMore, loadMoreProducts]);
 
   return (
-    <div className="pt-2 pr-2 pb-6 bg-none h-full">
+    <div className=" pr-2 bg-none h-full">
       <h1 className="fixed left-1 py-4 text-3xl font-futuraBold [writing-mode:sideways-lr]">
         All Products
       </h1>
