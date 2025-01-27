@@ -2,19 +2,18 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import Image from "next/image";
-import { removeFromCart, updateQuantity } from "@/store/cartSlice";
+import {
+  calculateCartTotal,
+  removeFromCart,
+  updateQuantity,
+} from "@/store/cartSlice";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 
 export default function Cart() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
-
-  // Calculate total price
-  const totalPrice = cartItems.reduce(
-    (sum, item) => sum + item.quantity * item.price,
-    0
-  );
+  const totalPrice = useSelector(calculateCartTotal);
 
   return (
     <div className="h-full pt-4 px-2 sm:px-10 pb-6 flex flex-col items-center gap-8">
