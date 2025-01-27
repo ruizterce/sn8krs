@@ -24,7 +24,7 @@ export default function Header() {
   }, [dispatch]);
 
   return (
-    <header className="z-10 bg-background text-foreground border-b-2 border-primary px-6 py-1 hover:drop-shadow-md-h hover:translate-y-1 transition-all duration-500">
+    <header className="z-30 bg-background text-foreground border-b-2 border-primary px-6 py-1 hover:drop-shadow-md-h hover:translate-y-1 transition-all duration-500">
       <h1 className="absolute top-[5px] text-2xl font-futuraExtraBoldOblique drop-shadow-sm-h hover:drop-shadow-md-h hover:-translate-x-[8px] hover:-translate-y-[8px] transition-all duration-200">
         <Link href="/">SN8KRS</Link>
       </h1>

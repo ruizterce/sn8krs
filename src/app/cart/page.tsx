@@ -4,6 +4,7 @@ import { RootState } from "@/store";
 import Image from "next/image";
 import { removeFromCart, updateQuantity } from "@/store/cartSlice";
 import { useDispatch } from "react-redux";
+import Link from "next/link";
 
 export default function Cart() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -42,21 +43,23 @@ export default function Cart() {
           <tbody className="bg-white text-black">
             {cartItems.map((item) => (
               <tr
-                key={item.id}
+                key={item.id + item.size}
                 className="hover:bg-gray-100 border-b border-gray-300"
               >
                 <td>
-                  <div className="px-4 py-2 flex items-center gap-6">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      width={60}
-                      height={60}
-                    />
-                    <span className="whitespace-nowrap truncate">
-                      {item.name}
-                    </span>
-                  </div>
+                  <Link href={`products/${item.category}/${item.id}`}>
+                    <div className="px-4 py-2 flex items-center gap-6">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        width={60}
+                        height={60}
+                      />
+                      <span className="whitespace-nowrap truncate">
+                        {item.name} {item.size ? "| Size: " + item.size : ""}
+                      </span>
+                    </div>{" "}
+                  </Link>
                 </td>
                 <td className="py-2 text-center whitespace-nowrap border-r border-gray-300">
                   <input
@@ -71,6 +74,7 @@ export default function Cart() {
                         updateQuantity({
                           id: item.id,
                           quantity: Number(e.target.value),
+                          size: item.size,
                         })
                       );
                     }}
@@ -90,6 +94,7 @@ export default function Cart() {
                         updateQuantity({
                           id: item.id,
                           quantity: item.quantity + 1,
+                          size: item.size,
                         })
                       );
                     }}
@@ -103,6 +108,7 @@ export default function Cart() {
                         updateQuantity({
                           id: item.id,
                           quantity: item.quantity - 1,
+                          size: item.size,
                         })
                       );
                     }}
@@ -113,9 +119,15 @@ export default function Cart() {
                     className="bg-primary h-6 w-6 text-background px-2 py-1 rounded-full leading-3"
                     onClick={() => {
                       if (
-                        window.confirm(`Remove "${item.name}" from your cart?`)
+                        window.confirm(
+                          `Remove "${item.name} ${
+                            item.size ? "| Size: " + item.size : ""
+                          }" from your cart?`
+                        )
                       ) {
-                        dispatch(removeFromCart(item.id));
+                        dispatch(
+                          removeFromCart({ id: item.id, size: item.size })
+                        );
                       }
                     }}
                   >

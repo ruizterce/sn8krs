@@ -2,10 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface CartItem {
   id: string;
+  category: string;
   name: string;
   price: number;
   image: string;
   quantity: number;
+  size?: number | string;
 }
 
 interface CartState {
@@ -22,7 +24,8 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
       const existingItem = state.items.find(
-        (item) => item.id === action.payload.id
+        (item) =>
+          item.id === action.payload.id && item.size === action.payload.size
       );
       if (existingItem) {
         existingItem.quantity += action.payload.quantity; // Increment quantity if the item is already in the cart
@@ -30,15 +33,26 @@ const cartSlice = createSlice({
         state.items.push({ ...action.payload });
       }
     },
-    removeFromCart: (state, action: PayloadAction<string>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+    removeFromCart: (
+      state,
+      action: PayloadAction<{ id: string; size?: number | string }>
+    ) => {
+      state.items = state.items.filter(
+        (item) =>
+          item.id + item.size !== action.payload.id + action.payload.size
+      );
     },
     updateQuantity: (
       state,
-      action: PayloadAction<{ id: string; quantity: number }>
+      action: PayloadAction<{
+        id: string;
+        quantity: number;
+        size?: number | string;
+      }>
     ) => {
       const existingItem = state.items.find(
-        (item) => item.id === action.payload.id
+        (item) =>
+          item.id === action.payload.id && item.size === action.payload.size
       );
       if (
         existingItem &&
