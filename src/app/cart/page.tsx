@@ -137,13 +137,17 @@ export default function Cart() {
             ))}
           </tbody>
           <tfoot>
-            <tr className="bg-gray-200 font-bold">
-              <td className="px-4 py-2 text-right" colSpan={3}>
-                Total:
+            <tr className="bg-gray-200 ">
+              <td className="px-4 py-2 text-right text-sm" colSpan={2}>
+                <div className="flex justify-end gap-8">
+                  <span>Items: ${(totalPrice * 0.79).toFixed(2)}</span>
+                  <span>Taxes: ${(totalPrice * 0.21).toFixed(2)}</span>
+                </div>
               </td>
-              <td className="px-4 py-2 text-right" colSpan={2}>
-                ${totalPrice.toFixed(2)}
+              <td className="px-4 py-2 text-right font-bold" colSpan={2}>
+                Total: ${totalPrice.toFixed(2)}
               </td>
+              <td></td>
             </tr>
           </tfoot>
         </table>
