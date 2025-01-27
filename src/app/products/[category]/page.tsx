@@ -112,11 +112,15 @@ export default function Category({ params }: PageProps) {
   }, [category]);
 
   // Reset brand
-  const handleResetBrand = (brand: string) => {
+  const handleResetBrand = (brand: string | null) => {
     initialLoad.current = false;
     setHasMore(true);
     setLastEvaluatedKey(null);
-    router.push(`${category}?brand=${encodeURIComponent(brand)}`);
+    if (brand) {
+      router.push(`${category}?brand=${encodeURIComponent(brand)}`);
+    } else {
+      router.push(`${category}`);
+    }
   };
 
   return (
@@ -124,8 +128,20 @@ export default function Category({ params }: PageProps) {
       <h1 className="fixed left-1 py-4 text-3xl font-futuraBold [writing-mode:sideways-lr]">
         {category.charAt(0).toUpperCase() + category.slice(1)}
       </h1>
-
-      <div className="fixed z-10 mt-4 px-4 py-1 bg-background max-w-[75vw] h-fit max-h-[20vh] flex flex-wrap gap-2 items-center justify-center ring-2 ring-primary">
+      <div className="fixed z-10 mt-4 px-4 py-1 bg-background max-w-[75vw] max-h-[37px] hover:max-h-[400px] hover:drop-shadow-md-h flex flex-wrap gap-2 items-center justify-center ring-2 ring-primary overflow-hidden transition-all duration-300 ">
+        <span
+          onClick={() => {
+            handleResetBrand(null);
+          }}
+          className={`cursor-pointer font-futuraBoldOblique texl-lg md:text-xl hover:drop-shadow-md-h hover:-translate-y-[5px] hover:-translate-x-[5px] transition-all duration-200 ${
+            searchParams.get("brand") === null
+              ? "drop-shadow-xs-h line-through"
+              : ""
+          }`}
+        >
+          View All
+        </span>
+        <span>|</span>
         {brands.map((brand) => (
           <span
             key={brand}
@@ -145,7 +161,7 @@ export default function Category({ params }: PageProps) {
 
       <div
         ref={productsContainerRef}
-        className="z-2 flex min-h-full py-4 pt-24 px-8 flex-wrap gap-6 items-center justify-center overflow-y-auto max-h-[80vh]"
+        className="z-2 flex min-h-full py-4 pt-20 px-8 flex-wrap gap-6 items-center justify-center overflow-y-auto max-h-[80vh]"
       >
         {products.length > 0 ? (
           products.map((product) => (
