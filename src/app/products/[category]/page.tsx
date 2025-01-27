@@ -152,7 +152,9 @@ export default function Category({ params }: PageProps) {
             <ProductCard key={product.id} product={product} />
           ))
         ) : (
-          <p>No products available</p>
+          <div className="flex justify-center items-center min-h-full">
+            <p className="text-xl font-semibold text-gray-700">Loading...</p>
+          </div>
         )}
       </div>
       <p
