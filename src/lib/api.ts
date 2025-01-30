@@ -1,4 +1,5 @@
 import { Product } from "@/types/product";
+import { Order } from "@/types/order";
 const baseUrl = process.env.NEXT_PUBLIC_AWS_API_GATEWAY_URL;
 
 export async function fetchProducts(
@@ -8,7 +9,6 @@ export async function fetchProducts(
   const options = {
     method: "GET",
   };
-  console.log(lastEvaluatedKey);
   const queryParams = new URLSearchParams({ limit: String(limit) });
   if (lastEvaluatedKey) {
     // Automatically URL-encode the lastEvaluatedKey if it's provided
@@ -57,13 +57,10 @@ export async function fetchProductsByCategory(
   if (brand) {
     queryParams.append("brand", brand);
   }
-  console.log("fetch lastEvaluatedKey");
-  console.log(lastEvaluatedKey);
   if (lastEvaluatedKey) {
     // Automatically URL-encode the lastEvaluatedKey if it's provided
     queryParams.append("lastEvaluatedKey", lastEvaluatedKey);
   }
-  console.log(`${baseUrl}/dev/products?${queryParams.toString()}`);
   try {
     const response = await fetch(
       `${baseUrl}/dev/products/${category}?${queryParams.toString()}`,
@@ -112,6 +109,29 @@ export async function fetchProductById(
     return data.body;
   } catch (error) {
     console.error("Error fetching product:", error);
+    throw error;
+  }
+}
+
+export async function fetchOrdersByUserId(userId: string): Promise<Order[]> {
+  const options = {
+    method: "GET",
+  };
+
+  try {
+    const response = await fetch(
+      `${baseUrl}/dev/orders?userId=${userId}`,
+      options
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch orders");
+    }
+
+    const data = await response.json();
+    return data.body.items;
+  } catch (error) {
+    console.error("Error fetching orders:", error);
     throw error;
   }
 }

@@ -159,10 +159,10 @@ export default function CompletePage() {
 
       <Link
         id="retry-button"
-        href="/"
+        href="/account"
         className="w-40 text-center py-1 bg-primary text-background text-2xl font-futuraExtraBoldOblique drop-shadow-md-h hover:bg-secondary"
       >
-        Back to Home
+        View orders
       </Link>
     </div>
   );
