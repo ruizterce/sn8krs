@@ -1,8 +1,21 @@
+import Slideshow from "@/components/Slideshow";
+
 export default function Home() {
   return (
-    <main className="p-4">
-      <h1 className="text-2xl font-bold">Welcome to sn8krs</h1>
-      <p>Your one-stop store for sneakers and fashion accessories.</p>
+    <main className="py-4 w-full h-full min-h-fit flex flex-col items-center bg-background gap-6">
+      <Slideshow />
+      <div className="flex flex-col items-center">
+        <div className="py-2 px-4 sm:px-10 rounded-full bg-accent drop-shadow-md-h-secondary">
+          <h1 className="font-futuraExtraBoldOblique text-3xl sm:text-5xl  text-white drop-shadow-sm-h-secondary sm:drop-shadow-md-h-secondary">
+            Welcome to SN8KRS
+          </h1>
+        </div>
+        <div className="pb-1 px-4 sm:px-10 rounded-b-3xl bg-accent drop-shadow-md-h-secondary -translate-y-[5px]">
+          <p className="font-futuraBold sm:text-2xl text-white drop-shadow-sm-h-secondary">
+            Fresh Goods Daily
+          </p>
+        </div>
+      </div>
     </main>
   );
 }

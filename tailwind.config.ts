@@ -74,6 +74,8 @@ export default {
         "sm-h": "2px 2px 0px hsl(var(--accent))",
         "md-h": "5px 5px 0px hsl(var(--accent))",
         "lg-h": "13px 13px 0px hsl(var(--accent))",
+        "sm-h-secondary": "2px 2px 0px hsl(var(--secondary))",
+        "md-h-secondary": "5px 5px 0px hsl(var(--secondary))",
       },
     },
   },
