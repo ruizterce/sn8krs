@@ -86,7 +86,54 @@ export default {
       animation: {
         marquee: "marquee 10s linear infinite",
       },
+      textStrokeWidth: {
+        xs: "0.5px",
+        sm: "1px",
+        md: "2px",
+        lg: "3px",
+        xl: "4px",
+        "2xl": "5px",
+      },
+      textStrokeColor: {
+        black: "#000",
+        white: "#fff",
+        primary: "hsl(var(--primary))",
+        secondary: "hsl(var(--secondary))",
+        accent: "hsl(var(--accent))",
+      },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [
+    tailwindcssAnimate,
+    function ({
+      addUtilities,
+      theme,
+    }: {
+      addUtilities: (utils: Record<string, never>) => void;
+      theme: (utility: string) => never;
+    }) {
+      const strokeWidths = theme("textStrokeWidth");
+      const strokeColors = theme("textStrokeColor");
+
+      // Generate text stroke width utilities
+      const strokeWidthUtilities = Object.entries(strokeWidths).map(
+        ([key, value]) => [
+          `.text-stroke-${key}`,
+          { "text-stroke-width": value, "-webkit-text-stroke-width": value },
+        ]
+      );
+
+      // Generate text stroke color utilities
+      const strokeColorUtilities = Object.entries(strokeColors).map(
+        ([key, value]) => [
+          `.text-stroke-${key}`,
+          { "text-stroke-color": value, "-webkit-text-stroke-color": value },
+        ]
+      );
+
+      addUtilities(
+        Object.fromEntries([...strokeWidthUtilities, ...strokeColorUtilities])
+      );
+    },
+  ],
 } satisfies Config;

@@ -82,13 +82,13 @@ export default function Cart() {
                       }}
                     />
                   </td>
-                  <td className="py-2 text-center whitespace-nowrap border-r border-gray-300">
+                  <td className="p-2 text-center whitespace-nowrap border-r border-gray-300">
                     ${item.price.toFixed(2)}
                   </td>
-                  <td className="py-2 text-center whitespace-nowrap border-r border-gray-300">
+                  <td className="p-2 text-center whitespace-nowrap border-r border-gray-300">
                     ${(item.price * item.quantity).toFixed(2)}
                   </td>
-                  <td className="flex flex-col items-center">
+                  <td className="px-2 flex flex-col items-center">
                     <button
                       className="bg-primary h-6 w-6 text-background px-2 py-1 rounded-full leading-3"
                       onClick={() => {

@@ -60,7 +60,7 @@ export default function ProductPage({ params }: PageProps) {
   }
 
   return (
-    <div className="sm:pt-6 px-2 pb-6">
+    <div className="sm:pt-6 px-2 pb-6 overflow-auto h-full">
       <h1 className="sm:fixed text-3xl font-futuraExtraBoldOblique sm:[writing-mode:sideways-lr]">
         {product.brand}
       </h1>
