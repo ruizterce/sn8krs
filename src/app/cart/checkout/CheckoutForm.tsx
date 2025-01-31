@@ -57,7 +57,7 @@ export default function CheckoutForm({ totalPrice }: CheckoutFormProps) {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center h-full">
       <p>For testing pruposes use this fake Card:</p>
       <table className="table-fixed border-collapse bg-background mt-2 drop-shadow-md-h">
         <tbody>

@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { useStripe } from "@stripe/react-stripe-js";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { setCartState } from "@/store/cartSlice";
 
 const SuccessIcon = (
   <svg
@@ -90,6 +92,7 @@ const STATUS_CONTENT_MAP = {
 
 export default function CompletePage() {
   const stripe = useStripe();
+  const dispatch = useDispatch();
 
   const [status, setStatus] = useState("default");
   const [intentId, setIntentId] = useState<string | null>(null);
@@ -116,6 +119,12 @@ export default function CompletePage() {
       setIntentId(paymentIntent.id);
     });
   }, [stripe]);
+
+  useEffect(() => {
+    if (status === "succeeded") {
+      dispatch(setCartState({ items: [] }));
+    }
+  }, [dispatch, status]);
 
   return (
     <div id="payment-status" className="flex flex-col items-center gap-4">
