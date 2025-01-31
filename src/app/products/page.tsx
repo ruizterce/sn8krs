@@ -77,13 +77,13 @@ export default function Products() {
   }, [hasMore, loadMoreProducts]);
 
   return (
-    <div className=" pr-2 bg-none h-full">
+    <div className="relative flex flex-col items-center h-full">
       <h1 className="fixed left-1 py-4 text-3xl font-futuraBold [writing-mode:sideways-lr]">
-        All Products
+        Trending
       </h1>
       <div
+        className="z-2 flex pt-4 pb-20 px-8 flex-wrap gap-6 items-center justify-center min-h-full w-full overflow-auto"
         ref={productsContainerRef}
-        className="flex min-h-full py-4 px-8 flex-wrap gap-6 items-center justify-center overflow-y-auto max-h-[80vh]"
       >
         {products.length > 0 ? (
           products.map((product) => (
@@ -95,7 +95,6 @@ export default function Products() {
           </div>
         )}
       </div>
-
       <p
         className={`fixed right-2 md:right-6 bottom-20 font-futuraBoldOblique text-xl [writing-mode:sideways-rl] origin-bottom-left transition-all duration-300 ease-in-out ${
           loading ? "opacity-1" : "opacity-0"

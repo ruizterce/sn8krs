@@ -74,7 +74,7 @@ export default function Page() {
   if (!isAuthenticated || !user) return <div>Please log in</div>;
 
   return (
-    <div className="h-full flex flex-col items-center justify-center">
+    <div className="h-full flex flex-col items-center justify-start my-10 overflow-auto">
       <div>User id: {user.id}</div>
 
       <div className="w-2/3">

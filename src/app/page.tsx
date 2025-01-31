@@ -2,7 +2,7 @@ import Slideshow from "@/components/Slideshow";
 
 export default function Home() {
   return (
-    <main className="py-4 w-full h-full min-h-fit flex flex-col items-center bg-background gap-6">
+    <div className="py-4 w-full h-full min-h-full flex flex-col items-center bg-background gap-6 overflow-auto">
       <Slideshow />
       <div className="flex flex-col items-center">
         <div className="py-2 px-4 sm:px-10 rounded-full bg-accent drop-shadow-md-h-secondary">
@@ -16,6 +16,6 @@ export default function Home() {
           </p>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

@@ -17,7 +17,7 @@ Amplify.configure(awsconfig);
 
 export default function Account() {
   return (
-    <div className="h-full">
+    <div className="h-full overflow-auto">
       <Authenticator
         loginMechanisms={["email"]}
         signUpAttributes={["name"]}

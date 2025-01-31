@@ -31,14 +31,14 @@ export default function Header() {
 
       <nav className="flex gap-4 w-full justify-center items-end font-futuraBoldOblique text-2xl ">
         <Link
-          href="/products"
+          href="/"
           className={`hover:drop-shadow-md-h hover:-translate-y-[5px] hover:-translate-x-[5px] transition-all duration-200 ${
-            pathname.endsWith("/products")
+            pathname.endsWith("/")
               ? "drop-shadow-xs-h font-black line-through"
               : ""
           }`}
         >
-          Products
+          Home
         </Link>
 
         <div
@@ -75,6 +75,17 @@ export default function Header() {
             ))}
           </div>
         </div>
+
+        <Link
+          href="/products"
+          className={`hover:drop-shadow-md-h hover:-translate-y-[5px] hover:-translate-x-[5px] transition-all duration-200 ${
+            pathname.endsWith("/products")
+              ? "drop-shadow-xs-h font-black line-through"
+              : ""
+          }`}
+        >
+          Trending
+        </Link>
 
         <Link
           href="/cart"

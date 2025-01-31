@@ -17,7 +17,7 @@ export default function Wrapper() {
 
 function CompleteWrapper() {
   return (
-    <div className="h-full flex flex-col items-center justify-center">
+    <div className="h-full flex flex-col items-center justify-center overflow-auto">
       <CompletePage />
     </div>
   );

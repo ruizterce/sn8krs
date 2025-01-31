@@ -77,6 +77,15 @@ export default {
         "sm-h-secondary": "2px 2px 0px hsl(var(--secondary))",
         "md-h-secondary": "5px 5px 0px hsl(var(--secondary))",
       },
+      keyframes: {
+        marquee: {
+          from: { transform: "translateX(0%)" },
+          to: { transform: "translateX(-25%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 10s linear infinite",
+      },
     },
   },
   plugins: [tailwindcssAnimate],

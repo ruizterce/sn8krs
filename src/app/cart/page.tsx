@@ -16,7 +16,7 @@ export default function Cart() {
   const totalPrice = useSelector(calculateCartTotal);
 
   return (
-    <div className="h-full pt-4 px-2 sm:px-10 pb-6 flex flex-col items-center gap-8">
+    <div className="h-full pt-4 px-2 sm:px-10 pb-6 flex flex-col items-center gap-8 overflow-auto">
       <h1 className="fixed left-1 py-4 text-3xl font-futuraBold [writing-mode:sideways-lr]">
         Your Cart
       </h1>

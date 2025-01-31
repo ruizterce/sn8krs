@@ -124,7 +124,7 @@ export default function Category({ params }: PageProps) {
   };
 
   return (
-    <div className="relative h-full pr-2 flex flex-col items-center">
+    <div className="relative flex flex-col items-center h-full">
       <h1 className="fixed left-1 py-4 text-3xl font-futuraBold [writing-mode:sideways-lr]">
         {category.charAt(0).toUpperCase() + category.slice(1)}
       </h1>
@@ -160,8 +160,8 @@ export default function Category({ params }: PageProps) {
       </div>
 
       <div
+        className="z-2 flex pt-20 pb-20 px-8 flex-wrap gap-6 items-center justify-center min-h-full w-full overflow-auto"
         ref={productsContainerRef}
-        className="z-2 flex min-h-full py-4 pt-20 px-8 flex-wrap gap-6 items-center justify-center overflow-y-auto max-h-[80vh]"
       >
         {products.length > 0 ? (
           products.map((product) => (
