@@ -18,10 +18,10 @@ export async function fetchProducts(
     );
   }
 
-  console.log(`${baseUrl}/dev/products?${queryParams.toString()}`);
+  console.log(`${baseUrl}/products?${queryParams.toString()}`);
   try {
     const response = await fetch(
-      `${baseUrl}/dev/products?${queryParams.toString()}`,
+      `${baseUrl}/products?${queryParams.toString()}`,
       options
     );
 
@@ -63,7 +63,7 @@ export async function fetchProductsByCategory(
   }
   try {
     const response = await fetch(
-      `${baseUrl}/dev/products/${category}?${queryParams.toString()}`,
+      `${baseUrl}/products/${category}?${queryParams.toString()}`,
       options
     );
 
@@ -97,7 +97,7 @@ export async function fetchProductById(
 
   try {
     const response = await fetch(
-      `${baseUrl}/dev/products/${category}/${id}`,
+      `${baseUrl}/products/${category}/${id}`,
       options
     );
 
@@ -119,10 +119,7 @@ export async function fetchOrdersByUserId(userId: string): Promise<Order[]> {
   };
 
   try {
-    const response = await fetch(
-      `${baseUrl}/dev/orders?userId=${userId}`,
-      options
-    );
+    const response = await fetch(`${baseUrl}/orders?userId=${userId}`, options);
 
     if (!response.ok) {
       throw new Error("Failed to fetch orders");
