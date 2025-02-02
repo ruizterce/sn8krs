@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ SN8KRS - Serverless E-Commerce Platform
 
-## Getting Started
+<p align="center">
+  <img src="./screenshots/welcome-banner.png" />
+</p>
+<p align="center"><i> A Serverless Next.js-based e-commerce platform for sneakers and streetwear</i></p>
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **⚡ Serverless Architecture** – Built with **AWS Lambda**, **API Gateway**, and **DynamoDB** for a fully scalable backend.
+- **🎨 Modern UI** – Developed with **Next.js** and **Tailwind CSS** for a sleek, responsive, and fast user experience.
+- **🔑 Secure Authentication** – Uses **AWS Cognito** via **AWS Amplify** for user sign-up, login, and session management.
+- **🛒 State Management** – **Redux** handles cart and authentication state across the application.
+- **💳 Stripe Integration** – Secure and seamless checkout with **Stripe Payments**.
+- **📦 Fast & Reliable Shopping Experience** – Designed for **sneakers and streetwear**, catering to urban fashion enthusiasts.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+| Technology                | Usage                                                  |
+| ------------------------- | ------------------------------------------------------ |
+| **Next.js**               | Frontend framework for SSR & fast performance          |
+| **AWS Lambda**            | Serverless backend functions                           |
+| **API Gateway**           | Manages API endpoints                                  |
+| **DynamoDB**              | NoSQL database for storing products, orders, and users |
+| **AWS Cognito + Amplify** | User authentication                                    |
+| **Redux**                 | Global state management (Cart & Auth)                  |
+| **Stripe**                | Payment processing                                     |
+| **Tailwind CSS**          | Modern and responsive UI                               |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📸 Screenshots
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+|   |   |
+| - | - |
+| ![Homepage](./screenshots/home.png) | ![Products](./screenshots/category.png) |
+| ![Brand](./screenshots/brand.png) | ![Product](./screenshots/product.png) | | 
+| ![Cart](./screenshots/cart.png) | ![Checkout](./screenshots/payment.png) | 
+| ![Confirmation](./screenshots/confirmation.png) | ![Orders](./screenshots/orders.png)
+| ![Items](./screenshots/items.png) |
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📜 License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html)
