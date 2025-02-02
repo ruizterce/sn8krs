@@ -1,5 +1,6 @@
 "use client";
 import { addToCart } from "@/store/cartSlice";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -19,6 +20,7 @@ export default function AddToCartButton({
 }) {
   const [quantity, setQuantity] = useState<number>(1);
   const [size, setSize] = useState<number | string | undefined>();
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -125,11 +127,40 @@ export default function AddToCartButton({
                   size,
                 })
               );
+              setShowModal(true);
             }
           }}
         >
           Add to Cart
         </button>
+        <div
+          className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 bg-gray-500 bg-opacity-70 h-full w-full flex flex-col items-center justify-center ${
+            showModal ? "" : "hidden"
+          }`}
+        >
+          <div className="relative p-10 bg-background">
+            <div className="mb-4">
+              {product.title} {size ? "| Size " + size : ""} x {quantity} added
+              to your cart!
+            </div>
+            <div className="flex justify-center gap-4">
+              <Link
+                className="bg-primary text-background px-2 py-1"
+                href={"/cart"}
+              >
+                View Cart
+              </Link>
+              <button
+                className="bg-primary text-background px-2 py-1"
+                onClick={() => {
+                  setShowModal(false);
+                }}
+              >
+                Continue Shopping
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
