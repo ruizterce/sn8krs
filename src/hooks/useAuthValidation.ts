@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import * as Auth from "aws-amplify/auth";
 import { setAuthState, logout } from "@/store/authSlice";
 import { Amplify } from "aws-amplify";
-import awsconfig from "../../aws-exports";
+
+const awsconfig = JSON.parse(process.env.NEXT_PUBLIC_AWS_CONFIG as string);
 Amplify.configure(awsconfig);
 
 export const useAuthValidation = () => {

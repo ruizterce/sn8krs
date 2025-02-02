@@ -6,13 +6,13 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import { AuthEventData } from "@aws-amplify/ui";
 import "@aws-amplify/ui-react/styles.css";
 import "./styles.css";
-import awsconfig from "../../../aws-exports";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { useAuthValidation } from "@/hooks/useAuthValidation";
 import { fetchOrdersByUserId } from "@/lib/api";
 import { Order } from "@/types/order";
 
+const awsconfig = JSON.parse(process.env.NEXT_PUBLIC_AWS_CONFIG as string);
 Amplify.configure(awsconfig);
 
 export default function Account() {
