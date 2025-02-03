@@ -29,7 +29,7 @@ export default function Header() {
         <Link href="/">SN8KRS</Link>
       </h1>
 
-      <nav className="flex gap-4 w-full justify-center items-end font-futuraBoldOblique text-2xl ">
+      <nav className="flex  w-full mt-8 gap-2 sm:mt-0 sm:gap-4 justify-center items-end font-futuraBoldOblique text-2xl ">
         <Link
           href="/"
           className={`hover:drop-shadow-md-h hover:-translate-y-[5px] hover:-translate-x-[5px] transition-all duration-200 ${
@@ -50,8 +50,13 @@ export default function Header() {
             setCategoryDropdown(false);
           }}
         >
-          <span className={`${categoryDropdown ? "drop-shadow-md-h" : ""}`}>
-            Categories
+          <span
+            className={`${categoryDropdown ? "drop-shadow-md-h" : ""}`}
+            onClick={() => {
+              setCategoryDropdown(true);
+            }}
+          >
+            Products
           </span>
           <div
             id="dropdown"
@@ -68,7 +73,13 @@ export default function Header() {
                     : ""
                 }`}
               >
-                <Link href={`/products/${category}`} className="p-4">
+                <Link
+                  href={`/products/${category}`}
+                  className="p-4"
+                  onClick={() => {
+                    setCategoryDropdown(false);
+                  }}
+                >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </Link>
               </div>
