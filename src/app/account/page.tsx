@@ -123,7 +123,7 @@ const AuthenticatedView = ({
                 <th className="py-3 w-16 sm:w-20 text-center border-b border-gray-700">
                   Amount
                 </th>
-                <th className="w-8 sm:w-12">Items</th>
+                <th className="w-8 sm:w-12">Details</th>
               </tr>
             </thead>
             <tbody className="bg-white text-gray-900">
@@ -132,10 +132,10 @@ const AuthenticatedView = ({
                   key={order.orderId}
                   className="hover:bg-gray-100 border-b border-gray-300"
                 >
-                  <td className="p-2 border-r border-gray-300">
+                  <td className="p-1 sm:p-2 border-r border-gray-300 truncate max-w-24 sm:max-w-full overflow-hidden text-ellipsis">
                     {order.orderId}
                   </td>
-                  <td className="p-2 text-center whitespace-nowrap border-r border-gray-300 flex gap-2 justify-between">
+                  <td className="p-1 sm:p-2 text-center whitespace-nowrap border-r border-gray-300 flex flex-wrap gap-2 justify-between truncate max-w-20 sm:max-w-full overflow-hidden text-ellipsis">
                     {(() => {
                       const date = new Date(order.createdAt);
                       const day = date.toLocaleString().split(",")[0];
@@ -148,10 +148,10 @@ const AuthenticatedView = ({
                       );
                     })()}
                   </td>
-                  <td className="p-2 text-center whitespace-nowrap border-r border-gray-300">
+                  <td className="p-1 sm:p-2 text-center whitespace-nowrap border-r border-gray-300 truncate max-w-4 sm:max-w-full overflow-hidden text-ellipsis">
                     {order.status}
                   </td>
-                  <td className="p-2 text-center whitespace-nowrap border-r border-gray-300">
+                  <td className="p-1 sm:p-2 text-center whitespace-nowrap border-r border-gray-300">
                     ${(order.amount / 100).toFixed(2)}
                   </td>
                   <td className="p-2 flex h-10 justify-center items-center">
@@ -178,7 +178,7 @@ const AuthenticatedView = ({
             showItemsModalId === order.orderId ? "" : "hidden"
           }`}
         >
-          <div className="relative p-10 bg-background">
+          <div className="relative p-4 pt-10 sm:p-10 bg-background">
             <button
               onClick={() => {
                 setShowItemsModalId(null);
@@ -187,7 +187,7 @@ const AuthenticatedView = ({
             >
               Close
             </button>
-            <table className="border-collapse border-2">
+            <table className="border-collapse border-2 text-sm sm:text-lg">
               <tbody>
                 <tr className=" border-2">
                   <td className="px-2">Order {order.orderId}</td>

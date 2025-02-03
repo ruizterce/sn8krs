@@ -14,6 +14,8 @@ export default function Category({ params }: PageProps) {
   const [lastEvaluatedKey, setLastEvaluatedKey] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(true);
   const [brands, setBrands] = useState<string[]>([]);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const initialLoad = useRef(false);
   const isFetching = useRef(false);
   const router = useRouter();
@@ -123,17 +125,46 @@ export default function Category({ params }: PageProps) {
     }
   };
 
+  // Detect touchscreen devices
+  useEffect(() => {
+    const detectTouch = () =>
+      setIsTouchDevice(window.matchMedia("(pointer: coarse)").matches);
+    detectTouch();
+    window.addEventListener("resize", detectTouch);
+    return () => window.removeEventListener("resize", detectTouch);
+  }, []);
+
   return (
     <div className="relative flex flex-col items-center h-full">
-      <h1 className="fixed left-1 py-4 text-3xl font-futuraBold [writing-mode:sideways-lr]">
+      <h1 className="z-10 w-full text-center shadow-md-h left-1 sm:fixed sm:w-fit sm:shadow-none sm:py-4 text-3xl font-futuraBold sm:[writing-mode:sideways-lr]">
         {category.charAt(0).toUpperCase() + category.slice(1)}
       </h1>
-      <div className="fixed z-10 mt-4 px-4 py-1 bg-background max-w-[75vw] max-h-[37px] hover:max-h-[400px] hover:drop-shadow-md-h flex flex-wrap gap-2 items-center justify-center ring-2 ring-primary overflow-hidden transition-all duration-300 ">
+      <div
+        className={`fixed z-10 mt-12 sm:mt-4 px-4 py-1 bg-background max-w-[75vw] ring-2 ring-primary 
+        flex flex-wrap gap-2 items-center justify-center overflow-hidden transition-all duration-300
+        ${
+          isExpanded ||
+          (!isTouchDevice && "hover:max-h-[400px] hover:drop-shadow-md-h")
+        } ${isExpanded ? "max-h-[400px]" : "max-h-[37px]"}
+      `}
+      >
+        {/* Touch device Toggle Button */}
+        {isTouchDevice && (
+          <button
+            onClick={() => setIsExpanded((prev) => !prev)}
+            className="bg-primary text-white rounded-full w-10 py-1 text-sm"
+          >
+            {isExpanded ? "↑" : "↓"}
+          </button>
+        )}
+
         <span
           onClick={() => {
             handleResetBrand(null);
+            setIsExpanded(false);
           }}
-          className={`cursor-pointer font-futuraBoldOblique texl-lg md:text-xl hover:drop-shadow-md-h hover:-translate-y-[5px] hover:-translate-x-[5px] transition-all duration-200 ${
+          className={`cursor-pointer font-futuraBoldOblique text-lg md:text-xl hover:drop-shadow-md-h 
+          hover:-translate-y-[5px] hover:-translate-x-[5px] transition-all duration-200 ${
             searchParams.get("brand") === null
               ? "drop-shadow-xs-h line-through"
               : ""
@@ -147,8 +178,10 @@ export default function Category({ params }: PageProps) {
             key={brand}
             onClick={() => {
               handleResetBrand(brand);
+              setIsExpanded(false);
             }}
-            className={`cursor-pointer font-futuraBoldOblique texl-lg md:text-xl hover:drop-shadow-md-h hover:-translate-y-[5px] hover:-translate-x-[5px] transition-all duration-200 ${
+            className={`cursor-pointer font-futuraBoldOblique text-lg md:text-xl hover:drop-shadow-md-h 
+            hover:-translate-y-[5px] hover:-translate-x-[5px] transition-all duration-200 ${
               searchParams.get("brand") === brand
                 ? "drop-shadow-xs-h line-through"
                 : ""
@@ -160,7 +193,7 @@ export default function Category({ params }: PageProps) {
       </div>
 
       <div
-        className="z-2 flex pt-20 pb-20 px-8 flex-wrap gap-6 items-center justify-center min-h-full w-full overflow-auto"
+        className="z-2 flex pt-16 sm:pt-20 pb-20 px-8 flex-wrap gap-6 items-center justify-center min-h-full w-full overflow-auto"
         ref={productsContainerRef}
       >
         {products.length > 0 ? (

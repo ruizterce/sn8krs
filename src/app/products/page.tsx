@@ -78,7 +78,7 @@ export default function Products() {
 
   return (
     <div className="relative flex flex-col items-center h-full">
-      <h1 className="fixed left-1 py-4 text-3xl font-futuraBold [writing-mode:sideways-lr]">
+      <h1 className="z-10 w-full text-center shadow-md-h left-1 sm:fixed sm:w-fit sm:shadow-none sm:py-4 text-3xl font-futuraBold sm:[writing-mode:sideways-lr]">
         Trending
       </h1>
       <div

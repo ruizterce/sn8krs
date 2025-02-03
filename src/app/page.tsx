@@ -6,7 +6,7 @@ export default function Home() {
       <Slideshow />
       <div className="flex flex-col items-center">
         <div className="py-2 px-4 sm:px-10 rounded-full bg-accent drop-shadow-md-h-secondary">
-          <h1 className="font-futuraExtraBoldOblique text-3xl sm:text-6xl  text-white text-stroke-secondary text-stroke-md drop-shadow-sm-h-secondary sm:drop-shadow-md-h-secondary">
+          <h1 className="font-futuraExtraBoldOblique text-3xl sm:text-6xl  text-white text-stroke-secondary text-stroke-sm sm:text-stroke-md drop-shadow-sm-h-secondary sm:drop-shadow-md-h-secondary">
             Welcome to SN8KRS
           </h1>
         </div>

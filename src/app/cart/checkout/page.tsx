@@ -75,8 +75,6 @@ export default function Page() {
 
   return (
     <div className="h-full flex flex-col items-center justify-start py-10 overflow-auto">
-      <div>User id: {user.id}</div>
-
       <div className="w-2/3">
         {clientSecret ? (
           <Elements

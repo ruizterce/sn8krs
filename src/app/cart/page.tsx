@@ -16,18 +16,18 @@ export default function Cart() {
   const totalPrice = useSelector(calculateCartTotal);
 
   return (
-    <div className="h-full pt-4 px-2 sm:px-10 pb-6 flex flex-col items-center gap-8 overflow-auto">
-      <h1 className="fixed left-1 py-4 text-3xl font-futuraBold [writing-mode:sideways-lr]">
+    <div className="h-full pb-6 flex flex-col items-center gap-8 overflow-auto">
+      <h1 className="z-10 w-full text-center shadow-md-h left-1 md:fixed md:w-fit md:shadow-none md:py-4 text-3xl font-futuraBold md:[writing-mode:sideways-lr]">
         Your Cart
       </h1>
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        <div className="w-full max-w-5xl flex flex-col items-center gap-6">
+        <div className="w-full max-w-6xl flex flex-col items-center gap-6 md:px-10 md:pt-4">
           <table className=" table-fixed border-collapse text-sm sm:text-base lg:text-lg drop-shadow-md-h overflow-hidden">
             <thead className="bg-primary text-white">
               <tr className="font-futuraExtraBold">
-                <th className="py-3 w-full border-b border-gray-700">
+                <th className="py-3 w-full border-b border-gray-700 min-w-0">
                   Product
                 </th>
                 <th className="sm:px-2 py-3 w-6 sm:w-12 border-b border-gray-700">
@@ -56,8 +56,9 @@ export default function Cart() {
                           alt={item.name}
                           width={60}
                           height={60}
+                          className="hidden sm:block"
                         />
-                        <span className="whitespace-nowrap truncate">
+                        <span className="sm:whitespace-nowrap whitespace-normal truncate">
                           {item.name} {item.size ? "| Size: " + item.size : ""}
                         </span>
                       </div>{" "}
