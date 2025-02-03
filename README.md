@@ -1,7 +1,7 @@
 # 🛍️ SN8KRS - Serverless E-Commerce Platform
 
 <p align="center">
-  <img src="./screenshots/welcome-banner.png" />
+  <img src="./screenshots/cover.png" />
 </p>
 <p align="center"><i> A Serverless Next.js-based e-commerce platform for sneakers and streetwear</i></p>
 
