@@ -31,13 +31,13 @@ export default function Page() {
         "payment_intent_client_secret"
       )
     );
-  });
+  }, []);
 
   useEffect(() => {
     if (!user) return;
     // Create PaymentIntent as soon as the page loads
     fetch(
-      `${process.env.NEXT_PUBLIC_AWS_API_GATEWAY_URL}/dev/orders/create-payment-intent`,
+      `${process.env.NEXT_PUBLIC_AWS_API_GATEWAY_URL}/orders/create-payment-intent`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -57,7 +57,7 @@ export default function Page() {
         setClientSecret(JSON.parse(data.body).clientSecret);
       })
       .catch((error) => console.error("Error:", error));
-  }, [user]);
+  }, [cartItems, user]);
 
   const appearance = {
     theme: "stripe",

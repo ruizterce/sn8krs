@@ -1,17 +1,19 @@
-import type { NextConfig } from "next";
+import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = (phase: string) => ({
+  output: "standalone",
+  assetPrefix: phase === PHASE_DEVELOPMENT_SERVER ? undefined : undefined,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
         hostname: "images.stockx.com",
-        port: "",
         pathname: "/images/**",
-        search: "",
       },
     ],
   },
-};
+});
 
 export default nextConfig;

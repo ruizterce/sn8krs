@@ -3,10 +3,9 @@ import { useEffect, useState, use } from "react";
 import { fetchProductById } from "@/lib/api";
 import Image from "next/image";
 import AddToCartButton from "./AddToCartButton";
-import { PageProps } from "../../../../../.next/types/app/page";
 import { Product } from "@/types/product";
 
-export default function ProductPage({ params }: PageProps) {
+export default function ProductPage({ params }: never) {
   const { category, id } = use(
     params as unknown as Promise<{ category: string; id: string }>
   );
