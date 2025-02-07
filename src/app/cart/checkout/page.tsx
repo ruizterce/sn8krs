@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { calculateCartTotal } from "@/store/cartSlice";
 import { useAuthValidation } from "../../../hooks/useAuthValidation";
+import Link from "next/link";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
@@ -71,7 +72,17 @@ export default function Page() {
     return <div>Loading...</div>;
   }
 
-  if (!isAuthenticated || !user) return <div>Please log in</div>;
+  if (!isAuthenticated || !user)
+    return (
+      <div className="flex justify-center items-center min-h-full">
+        <p className="text-xl font-semibold text-gray-700">
+          Please{" "}
+          <Link href={"/account"} className="underline">
+            Log in
+          </Link>
+        </p>
+      </div>
+    );
 
   return (
     <div className="h-full flex flex-col items-center justify-start py-10 overflow-auto">

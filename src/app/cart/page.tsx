@@ -21,7 +21,11 @@ export default function Cart() {
         Your Cart
       </h1>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <div className="flex justify-center items-center min-h-full">
+          <p className="text-xl font-semibold text-gray-700">
+            Your cart is empty
+          </p>
+        </div>
       ) : (
         <div className="w-full max-w-6xl flex flex-col items-center gap-6 md:px-10 md:pt-4">
           <table className=" table-fixed border-collapse text-sm sm:text-base lg:text-lg drop-shadow-md-h overflow-hidden">
